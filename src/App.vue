@@ -14,7 +14,7 @@ const $authStore = userAuthStore();
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-      <p>account: admin password: admin123</p>
+      <p>account: test password: test</p>
       <div v-if="!$authStore.token">
         <button @click="$authStore.login()">Log in</button>
       </div>
