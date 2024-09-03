@@ -1,23 +1,29 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { userAuthStore } from './stores/user';
+
+const $authStore = userAuthStore();
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <HelloWorld msg="Keycloak Demo" />
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <p>account: admin password: admin123</p>
+      <div v-if="!$authStore.token">
+        <button @click="$authStore.login()">Log in</button>
+      </div>
+      <div v-else>
+        <p>Welcome, {{ $authStore.user.sub }}!</p>
+        <button @click="$authStore.logout()">Log out</button>
+      </div>
     </div>
   </header>
-
-  <RouterView />
 </template>
 
 <style scoped>
