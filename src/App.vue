@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { userAuthStore } from './stores/user';
-
-const $authStore = userAuthStore();
 </script>
 
 <template>
@@ -14,16 +11,6 @@ const $authStore = userAuthStore();
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-      <p class="account-info">account: test password: test</p>
-      <div class="auth-buttons">
-        <div v-if="!$authStore.token">
-          <button @click="$authStore.login()">Log in</button>
-        </div>
-        <div v-else>
-          <p>Welcome, {{ $authStore.user.sub }}!</p>
-          <button @click="$authStore.logout()">Log out</button>
-        </div>
-      </div>
     </div>
   </header>
   <router-view></router-view>
@@ -69,7 +56,6 @@ nav a:first-of-type {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
   }
 
   .logo {
