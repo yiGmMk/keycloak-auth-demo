@@ -14,16 +14,19 @@ const $authStore = userAuthStore();
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-      <p>account: test password: test</p>
-      <div v-if="!$authStore.token">
-        <button @click="$authStore.login()">Log in</button>
-      </div>
-      <div v-else>
-        <p>Welcome, {{ $authStore.user.sub }}!</p>
-        <button @click="$authStore.logout()">Log out</button>
+      <p class="account-info">account: test password: test</p>
+      <div class="auth-buttons">
+        <div v-if="!$authStore.token">
+          <button @click="$authStore.login()">Log in</button>
+        </div>
+        <div v-else>
+          <p>Welcome, {{ $authStore.user.sub }}!</p>
+          <button @click="$authStore.logout()">Log out</button>
+        </div>
       </div>
     </div>
   </header>
+  <router-view></router-view>
 </template>
 
 <style scoped>
@@ -81,11 +84,29 @@ nav a:first-of-type {
 
   nav {
     text-align: left;
+    justify-content: center;
     margin-left: -1rem;
     font-size: 1rem;
 
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+
+.account-info {
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.auth-buttons button {
+  padding: 0.5rem 1rem;
 }
 </style>
